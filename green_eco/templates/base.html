@@ -1,0 +1,27 @@
+{% load compile_static %}
+{% load wagtailcore_tags static wagtailuserbar %}
+
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% endblock %}</title>
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/boot.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        {% block extra_css %}{% endblock %}
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}">
+        <header>
+            {% block menu %}{% endblock %}
+            {% wagtailuserbar %}
+        </header>
+        {% block content %}{% endblock %}
+    </body>
+
+    <script type="text/javascript" src="{% static 'js/green_eco.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</html>

@@ -1,0 +1,21 @@
+{% load static load_pages_tags wagtailcore_tags %}
+{% get_site_root as site_root %}
+
+<div class="header-menu">
+    <ul class="header-mnu">
+        {% for menuitem in menuitems %}
+            <li class="{% if menuitem.active %}active{% endif %}">
+                {% if menuitem.title == 'Главная' %}
+                   <div class="header-logo"><a href="/"><img src="{% static 'img/Logo-Retina.png' %}"></a></div>
+                {% else %}
+                    {% if menuitem.show_dropdown %}
+                        <a href="#">{{ menuitem.title }} <b class="caret"></b></a>
+                        {% top_menu_children parent=menuitem %}
+                    {% else %}
+                        <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
+                    {% endif %}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
